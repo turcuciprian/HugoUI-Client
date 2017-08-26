@@ -30,7 +30,7 @@ gulp.task('sassLib', function() {
         .pipe(sass({
             outputStyle: 'compressed'
         }).on('error', sass.logError))
-        .pipe(rename('styleLib.css'))
+        .pipe(rename('styleLib.min.css'))
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('./ss'));
 });
@@ -49,10 +49,25 @@ gulp.task('sass', function() {
 // Javascript
 //
 
-gulp.task('compressjS', function() {
+// Libraries
+//
+gulp.task('compressjSLib', function() {
     return gulp.src(
             [
                 'node_modules/angular/angular.min.js', //angular
+            ])
+        .pipe(uglify('scriptLib.min.js', {
+            outSourceMap: true,
+            mangle: false
+        }))
+        .pipe(gulp.dest('./ss'));
+});
+
+// Custom Scripts
+//
+gulp.task('compressjS', function() {
+    return gulp.src(
+            [
                 './src/js/*.js',
             ])
         .pipe(uglify('script.min.js', {
@@ -67,12 +82,16 @@ gulp.task('compressjS', function() {
 //
 
 gulp.task('sass:watch', function() {
+    //styles
     gulp.watch('./src/sass/custom/*.scss', ['sass']);
     gulp.watch('./src/sass/style.min.scss', ['sass']);
+    //scripts
     gulp.watch('./src/js/*.js', ['compressjS']);
-    gulp.watch("src/views/*.html").on('change', browserSync.reload);
+    //browser-sync on change watching
+    gulp.watch(["src/views/*.html","index.html"]).on('change', browserSync.reload);
     gulp.watch("src/sass/*.scss").on('change', browserSync.reload);
     gulp.watch("src/sass/custom/*.scss").on('change', browserSync.reload);
     gulp.watch("src/js/*.js").on('change', browserSync.reload);
 });
-gulp.task('default', ['sass','sassLib', 'compressjS', 'sass:watch', 'browser-sync']);
+//load all tasks
+gulp.task('default', ['sass', 'sassLib', 'compressjS', 'compressjSLib', 'sass:watch', 'browser-sync']);
