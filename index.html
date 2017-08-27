@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Hugo UI</title>
-    <script type="text/javascript" src="ss/scriptLib.min.js">
-    <script type="text/javascript" src="ss/script.min.js">
+    <link rel="stylesheet" href="./ss/styleLib.min.css">
+    <link rel="stylesheet" href="./ss/style.min.css">
     </script>
-  </head>
-  <body>
-    <link rel="stylesheet" href="/ss/styleLib.min.css">
-    <link rel="stylesheet" href="/ss/style.min.css">
-  </body>
+</head>
+
+<body ng-app="hugoUI">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+              <ng-view></ng-view>
+
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="ss/scriptLib.min.js"></script>
+    <script type="text/javascript" src="ss/script.min.js"></script>
+</body>
+
 </html>

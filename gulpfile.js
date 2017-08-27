@@ -18,7 +18,6 @@ gulp.task('browser-sync', function() {
         }
     });
 });
-
 //
 //SASS
 //
@@ -55,6 +54,7 @@ gulp.task('compressjSLib', function() {
     return gulp.src(
             [
                 'node_modules/angular/angular.min.js', //angular
+                'node_modules/angular-route/angular-route.min.js', //angular-route
             ])
         .pipe(uglify('scriptLib.min.js', {
             outSourceMap: true,
@@ -69,6 +69,9 @@ gulp.task('compressjS', function() {
     return gulp.src(
             [
                 './src/js/*.js',
+                './src/js/models/*.js',
+                './src/js/services/*.js',
+                './src/js/directives/*.js'
             ])
         .pipe(uglify('script.min.js', {
             outSourceMap: true,
@@ -86,12 +89,13 @@ gulp.task('sass:watch', function() {
     gulp.watch('./src/sass/custom/*.scss', ['sass']);
     gulp.watch('./src/sass/style.min.scss', ['sass']);
     //scripts
-    gulp.watch('./src/js/*.js', ['compressjS']);
+    gulp.watch(['./src/js/*.js', './src/js/*/*.js'], ['compressjS']);
     //browser-sync on change watching
-    gulp.watch(["src/views/*.html","index.html"]).on('change', browserSync.reload);
+    gulp.watch(["src/views/*.html", "index.html"]).on('change', browserSync.reload);
     gulp.watch("src/sass/*.scss").on('change', browserSync.reload);
     gulp.watch("src/sass/custom/*.scss").on('change', browserSync.reload);
     gulp.watch("src/js/*.js").on('change', browserSync.reload);
+    gulp.watch("src/js/*/*.js").on('change', browserSync.reload);
 });
 //load all tasks
-gulp.task('default', ['sass', 'sassLib', 'compressjS', 'compressjSLib', 'sass:watch', 'browser-sync']);
+gulp.task('default', ['sassLib', 'sass', 'compressjSLib', 'compressjS', 'sass:watch', 'browser-sync']);
