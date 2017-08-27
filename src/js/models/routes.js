@@ -1,9 +1,11 @@
 (function() {
     app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+        //validation function
         var isLogged = function($q, $rootScope, $location, $http) {
             $location.path('/login');
             return true;
-        }
+        };
+        //the routes
         $routeProvider
             .when("/login", {
                 templateUrl: "src/views/login.html",
