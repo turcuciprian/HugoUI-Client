@@ -69,6 +69,7 @@ gulp.task('compressjS', function() {
     return gulp.src(
             [
                 './src/js/*.js',
+                './src/js/controllers/*.js',
                 './src/js/models/*.js',
                 './src/js/services/*.js',
                 './src/js/directives/*.js'

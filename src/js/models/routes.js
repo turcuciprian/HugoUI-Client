@@ -2,11 +2,19 @@
     app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
         //validation function
         var isLogged = function($q, $rootScope, $location, $http) {
-            $location.path('/login');
+            // $location.path('/login');
             return true;
         };
         //the routes
         $routeProvider
+        //other
+            .when("/getTaskID", {
+                templateUrl: "src/views/getTaskID.html",
+                resolve: {
+                    factory: isLogged
+                }
+            })
+            //main service
             .when("/login", {
                 templateUrl: "src/views/login.html",
                 resolve: {
