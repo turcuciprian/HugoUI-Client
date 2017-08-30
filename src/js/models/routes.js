@@ -21,6 +21,12 @@
                     factory: isLogged
                 }
             })
+            .when("/register", {
+                templateUrl: "src/views/register.html",
+                resolve: {
+                    factory: isLogged
+                }
+            })
             .when("/dashboard", {
                 templateUrl: "src/views/dashboard.html",
                 resolve: {
