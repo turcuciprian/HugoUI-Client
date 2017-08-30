@@ -13,13 +13,24 @@
           loginService.login(credentials);
         };
         $scope.registerClick = function(){
+          var config = {
+                headers : {
+                    'content-type': 'application/json;charset=utf-8;'
+                }
+            }
           var credentials = {
             'username':$scope.username,
+            'email':$scope.email,
             'password':$scope.password,
-          }
+          };
+          credentials = JSON.stringify(credentials);
           hugoUIService.log(credentials);
-          loginService.register(credentials).then(function(response){
+          loginService.register(credentials,config).then(function(response){
             hugoUIService.log(response);
+          },function(response){
+            hugoUIService.log('ERROR:');
+            hugoUIService.log(response);
+
           });
 
         };
