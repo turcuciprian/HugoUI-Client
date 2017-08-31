@@ -23,7 +23,9 @@ gulp.task('browser-sync', function() {
 //
 gulp.task('sassLib', function() {
     return gulp.src([
-            './node_modules/bootstrap/dist/css/bootstrap.min.css'
+      './node_modules/ng-notify/dist/ng-notify.min.css', //ng-notify
+      './node_modules/bootstrap/dist/css/bootstrap.min.css',
+
         ])
         .pipe(sourcemaps.init())
         .pipe(sass({
@@ -53,8 +55,10 @@ gulp.task('sass', function() {
 gulp.task('compressjSLib', function() {
     return gulp.src(
             [
-                'node_modules/angular/angular.min.js', //angular
-                'node_modules/angular-route/angular-route.min.js', //angular-route
+                './node_modules/angular/angular.min.js', //angular
+                './node_modules/angular-route/angular-route.min.js', //angular-route
+                './node_modules/ng-notify/dist/ng-notify.min.js', //ng-notify
+                './node_modules/ng-validation/angular-validation.min.js',
             ])
         .pipe(uglify('scriptLib.min.js', {
             outSourceMap: true,

@@ -23,6 +23,8 @@
         "gulp-rename": "1.2.2",
         "angular": "1.6.6",
         "angular-route": "1.6.6",
+        "ng-validation": "^1.0.6",
+        "ng-notify": "^0.7.1",
         "bootstrap": "3.3.7"
     },
     "engines": {
